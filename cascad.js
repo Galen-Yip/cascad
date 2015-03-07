@@ -117,8 +117,16 @@
                         $(img).css({width: width});          //设置图片宽度
 
                         var li = $('<li>').css({left: left, top: top});   //设置定位
-                        C.arr[layout] += (height+ C.gap);
-                        width == C.col2W ? C.arr[layout+1] += (height+ C.gap) : null;
+                        
+
+                        //如果图片放大取较高的列的值来存储
+                        if(width == C.col2W) {
+                            C.arr[layout] = Math.max(C.arr[layout], C.arr[layout+1]);
+                            C.arr[layout+1] = C.arr[layout]
+                            C.arr[layout+1] += (height+ C.gap);
+                        } 
+
+                        C.arr[layout] += (height+ C.gap)
 
 
 
